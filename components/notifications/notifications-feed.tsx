@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect } from "react";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { useNotifications } from "@/hooks/useNotifications";

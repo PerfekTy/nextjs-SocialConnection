@@ -52,7 +52,7 @@ export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
       href: "/notifications",
       icon: <BsBell size={30} />,
       active: pathname === "/notifications",
-      alert: true,
+      alert: currentUser?.hasNotification,
     },
   ];
 
