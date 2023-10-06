@@ -1,7 +1,7 @@
 import prisma from "@/lib/prismadb";
 
 export async function handler(req: Request, res: Response) {
-  if (req.method !== "GET") {
+  if (req.method !== "GET" && req.method !== "DELETE") {
     return new Response("Unsupported method", { status: 405 });
   }
 
@@ -14,18 +14,26 @@ export async function handler(req: Request, res: Response) {
       throw new Error("Invalid ID");
     }
 
-    const post = await prisma.post.findUnique({
-      where: {
-        id: postId,
-      },
-      include: {
-        user: true,
-        comments: {
-          include: { user: true },
-          orderBy: { createdAt: "desc" },
+    let post;
+
+    if (req.method === "GET") {
+      post = await prisma.post.findUnique({
+        where: {
+          id: postId,
         },
-      },
-    });
+        include: {
+          user: true,
+          comments: {
+            include: { user: true },
+            orderBy: { createdAt: "desc" },
+          },
+        },
+      });
+    }
+
+    if (req.method === "DELETE") {
+      post = await prisma.post.delete({ where: { id: postId } });
+    }
 
     return new Response(JSON.stringify(post), { status: 200 });
   } catch (error) {
@@ -34,4 +42,4 @@ export async function handler(req: Request, res: Response) {
   }
 }
 
-export { handler as GET };
+export { handler as GET, handler as DELETE };

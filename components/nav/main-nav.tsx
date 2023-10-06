@@ -34,7 +34,7 @@ export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
 
   useClickOutside(ref, mobileMenu, setMobileMenu);
 
-  const routes = [
+  const ROUTES = [
     {
       label: "Home",
       href: "/",
@@ -54,6 +54,10 @@ export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
       active: pathname === "/notifications",
       alert: currentUser?.hasNotification,
     },
+    {
+      href: "/",
+      icon: <TweetButton />,
+    },
   ];
 
   return (
@@ -69,7 +73,7 @@ export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
         <FaTwitter size={40} color="#1da2f4" />
         <h2 className="text-lg font-semibold tracking-wider">Twitter</h2>
       </div>
-      {routes.map((route) => (
+      {ROUTES.map((route) => (
         <NavItem
           key={route.href}
           href={route.href}
@@ -80,12 +84,6 @@ export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
           alert={route.alert}
         />
       ))}
-
-      <NavItem
-        onClick={() => setMobileMenu(false)}
-        href="/"
-        icon={<TweetButton />}
-      />
 
       <div className="md:flex md:justify-center md:items-center hidden  ">
         <NavDropdownMenu pathname={pathname} currentUser={currentUser} />

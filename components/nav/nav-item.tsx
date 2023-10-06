@@ -10,7 +10,7 @@ interface NavItemProps {
   icon?: React.ReactNode;
   label?: string;
   alert?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const NavItem = ({

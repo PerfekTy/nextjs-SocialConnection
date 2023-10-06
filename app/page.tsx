@@ -6,7 +6,9 @@ export default function Home() {
   return (
     <>
       <Header showBackArrow label="Home" />
-      <Form placeholder="What's happening?!" />
+      <div className="px-5 md:px-0">
+        <Form placeholder="What's happening?!" />
+      </div>
       <PostFeed />
     </>
   );

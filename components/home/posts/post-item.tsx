@@ -1,24 +1,38 @@
 import { useCallback, useMemo } from "react";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { useRouter } from "next/navigation";
 import { Avatar } from "@/components/avatar/avatar";
 
-import { AiOutlineHeart, AiOutlineMessage, AiFillHeart } from "react-icons/ai";
+import {
+  AiOutlineHeart,
+  AiOutlineMessage,
+  AiFillHeart,
+  AiFillDelete,
+} from "react-icons/ai";
 
 import { useLike } from "@/hooks/useLike";
+import { usePosts } from "@/hooks/usePosts";
 
 interface PostItemProps {
   userId?: string;
   data: Record<string, any>;
   isLoading: boolean;
+  params?: any;
 }
 
-export const PostItem = ({ userId, isLoading, data = {} }: PostItemProps) => {
+export const PostItem = ({
+  userId,
+  isLoading,
+  data = {},
+  params,
+}: PostItemProps) => {
   const router = useRouter();
   const { data: currentUser } = useCurrentUser();
   const { isLiked, toggleLike } = useLike({ postId: data.id, userId });
+  const { mutate: mutatePosts } = usePosts();
 
   const goToUser = useCallback(
     (e: any) => {
@@ -44,6 +58,22 @@ export const PostItem = ({ userId, isLoading, data = {} }: PostItemProps) => {
       toggleLike();
     },
     [currentUser, toggleLike]
+  );
+
+  const onDelete = useCallback(
+    async (e: any) => {
+      e.stopPropagation();
+
+      if (!currentUser) {
+        return null;
+      }
+
+      await axios.delete(`api/posts/${data.id}`, { data: { id: data.id } });
+      toast.success("Post deleted");
+
+      mutatePosts();
+    },
+    [data.id, currentUser, mutatePosts]
   );
 
   const createdAt = useMemo(() => {
@@ -82,7 +112,7 @@ export const PostItem = ({ userId, isLoading, data = {} }: PostItemProps) => {
             <span className="text-sm">{createdAt}</span>
           </div>
           <div className="mt-1">{data.body}</div>
-          <div className="flex flex-row items-center mt-3 gap-10">
+          <div className="flex flex-row items-center mt-3 gap-10 relative">
             <div className="flex flex-row items-center gap-2 cursor-pointer transition hover:text-[#1da2f4] text-muted-foreground">
               <AiOutlineMessage size={20} />
               <p>{data.comments?.length || 0}</p>
@@ -97,6 +127,12 @@ export const PostItem = ({ userId, isLoading, data = {} }: PostItemProps) => {
                 <AiOutlineHeart size={20} />
               )}
               <p>{data.likedIds?.length || 0}</p>
+            </div>
+            <div
+              className="flex flex-row items-center gap-2 cursor-pointer transition hover:text-yellow-300 text-muted-foreground ml-auto"
+              onClick={onDelete}
+            >
+              {currentUser?.id === data.user.id && <AiFillDelete size={20} />}
             </div>
           </div>
         </div>
