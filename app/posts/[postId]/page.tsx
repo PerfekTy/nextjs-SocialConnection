@@ -23,7 +23,7 @@ const PostView = ({ params }: { params: any }) => {
   return (
     <>
       <Header label="Tweet" showBackArrow />
-      <PostItem data={fetchedPost} isLoading />
+      <PostItem data={fetchedPost} />
       <Form
         postId={params.postId as string}
         isComment

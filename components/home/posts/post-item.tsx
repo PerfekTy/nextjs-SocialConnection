@@ -1,20 +1,13 @@
 import { useCallback, useMemo } from "react";
 import toast from "react-hot-toast";
-import axios from "axios";
 
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { useRouter } from "next/navigation";
 import { Avatar } from "@/components/avatar/avatar";
 
-import {
-  AiOutlineHeart,
-  AiOutlineMessage,
-  AiFillHeart,
-  AiFillDelete,
-} from "react-icons/ai";
+import { AiOutlineHeart, AiOutlineMessage, AiFillHeart } from "react-icons/ai";
 
 import { useLike } from "@/hooks/useLike";
-import { usePosts } from "@/hooks/usePosts";
 
 interface PostItemProps {
   userId?: string;
