@@ -11,11 +11,6 @@
 [build.environment]
   PRISMA_MIGRATE = "true"
 
-[build.environment]
-NEXTAUTH_JWT_SECRET
-
-[build.environment]
-NEXTAUTH_SECRET
-
-[build.environment]
-MONOGO
+NEXTAUTH_JWT_SECRET="supersecret"
+NEXTAUTH_SECRET="supersecret"
+MONOGO="mongodb+srv://seba:sebas@cluster0.yatljvf.mongodb.net/twitter"
