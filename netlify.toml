@@ -1,0 +1,21 @@
+[build]
+  command = "npm run build" # Twój aktualny proces budowy
+  functions = "lambda" # Jeśli używasz funkcji AWS Lambda
+
+[build.environment]
+  NEXT_PRIVATE_TARGET = "your_next_private_target"
+
+[build.environment]
+  PRISMA_GENERATE = "true"
+
+[build.environment]
+  PRISMA_MIGRATE = "true"
+
+[build.environment]
+NEXTAUTH_JWT_SECRET="supersecret"
+
+[build.environment]
+NEXTAUTH_SECRET="supersecret"
+
+[build.environment]
+MONOGO="mongodb+srv://seba:sebas@cluster0.yatljvf.mongodb.net/twitter"
