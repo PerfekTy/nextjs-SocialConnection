@@ -196,18 +196,18 @@ export const AuthModal = () => {
         <DialogHeader>
           {modalToggle ? (
             <>
-              <DialogTitle className="my-5 flex gap-2 items-center justify-center">
-                Login to your SocialConnection{" "}
+              <DialogTitle className="my-5 flex gap-2 items-center justify-center text-sm md:text-lg">
+                <p>Login to your </p>
                 <MdOutlineConnectWithoutContact size={30} color="#2dac5c" />
                 account
               </DialogTitle>
               {bodyContentLogin}
-              <DialogDescription className="justify-center items-center flex gap-3">
+              <DialogDescription className="justify-center items-center flex gap-3 text-[10px] md:text-sm">
                 First time using SocialConnection?
                 <Button
                   onClick={() => setModalToggle(false)}
                   variant="ghost"
-                  className="font-bold underline underline-offset-4"
+                  className="font-bold underline text-[10px] md:text-sm"
                 >
                   Create an account
                 </Button>
@@ -216,7 +216,7 @@ export const AuthModal = () => {
           ) : (
             <>
               <DialogTitle className="my-5 flex gap-2 items-center justify-center">
-                Create account to use SocialConnection
+                Create account to use
                 <MdOutlineConnectWithoutContact size={30} color="#2dac5c" />
               </DialogTitle>
               {bodyContentRegister}

@@ -88,7 +88,7 @@ export const Form = ({
               <hr className="opacity-0 peer-focus:opacity-100 h-[1px] transition w-full" />
               <div className="my-4 flex flex-row justify-end">
                 <Button className="text-white" disabled={isLoading || !body}>
-                  {postId ? "Comment" : "Tweet"}
+                  {postId ? "Comment" : "Post"}
                 </Button>
               </div>
             </div>

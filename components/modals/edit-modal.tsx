@@ -60,7 +60,11 @@ export const EditModal = ({ userId }: { userId: string }) => {
 
       toast.success("User updated successfully");
     } catch (error) {
-      toast.error("Something went wrong");
+      if (error === 413) {
+        toast.error("Image is too large");
+      } else {
+        toast.error("Something went wrong");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -127,7 +131,7 @@ export const EditModal = ({ userId }: { userId: string }) => {
         <DialogHeader>
           <DialogTitle>Update details</DialogTitle>
         </DialogHeader>
-        <DialogDescription>
+        <DialogDescription className="md:text-left text-center">
           Edit your SocialConnection account details.
         </DialogDescription>
         {bodyContent}

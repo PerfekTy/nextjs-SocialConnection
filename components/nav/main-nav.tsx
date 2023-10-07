@@ -1,10 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { BsBell } from "react-icons/bs";
 import { PiEnvelopeLight } from "react-icons/pi";
@@ -27,12 +27,22 @@ interface mainNavProps {
 }
 
 export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
+  const router = useRouter();
   const { data: currentUser } = useCurrentUser();
 
   const pathname = usePathname();
   const ref = useRef<HTMLMenuElement>(null);
 
   useClickOutside(ref, mobileMenu, setMobileMenu);
+
+  const goToUser = useCallback(() => {
+    if (!currentUser) {
+      return null;
+    }
+
+    setMobileMenu(false);
+    router.push(`/users/${currentUser.id}`);
+  }, [router, currentUser]);
 
   const ROUTES = [
     {
@@ -93,7 +103,11 @@ export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
 
       {currentUser && (
         <div className="md:hidden flex flex-col gap-6 justify-center items-center">
-          <Button variant="ghost" className="p-0 rounded-full">
+          <Button
+            variant="ghost"
+            className="p-0 rounded-full"
+            onClick={() => goToUser()}
+          >
             <Image
               src={currentUser?.profileImage || "/images/placeholder.png"}
               alt="Profile image"

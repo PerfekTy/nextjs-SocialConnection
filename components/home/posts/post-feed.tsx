@@ -13,7 +13,7 @@ export const PostFeed = ({ userId }: PostFeedProps) => {
 
   return (
     <>
-      {posts?.map((post: Record<string, any>) => (
+      {posts.map((post: Record<string, any>) => (
         <PostItem key={post.id} data={post} userId={userId as string} />
       ))}
     </>
