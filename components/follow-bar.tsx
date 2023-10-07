@@ -3,12 +3,24 @@
 import { useUsers } from "@/hooks/useUsers";
 import { Avatar } from "./avatar/avatar";
 import { ArrowDownWideNarrow } from "lucide-react";
+import { AuthModal } from "./modals/auth-modal";
 
 export const FollowBar = () => {
   const { data: users = [] } = useUsers();
 
   if (users.length === 0) {
-    return null;
+    return (
+      <div className="px-6 py-4 hidden lg:block">
+        <div className="border rounded-xl p-4">
+          <h2 className="dark:text-white text-xl font-semibold flex gap-2 items-center justify-start">
+            People you might know <ArrowDownWideNarrow />
+          </h2>
+          <span className="flex justify-center items-center mt-3">
+            <AuthModal />
+          </span>
+        </div>
+      </div>
+    );
   }
 
   return (

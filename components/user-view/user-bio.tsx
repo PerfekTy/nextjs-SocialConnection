@@ -12,7 +12,7 @@ import { useFollow } from "@/hooks/useFollow";
 export const UserBio = ({ userId }: { userId: string }) => {
   const { data: currentUser } = useCurrentUserSession();
   const { data: fetchedUser } = useUser(userId);
-  const { isFollowing, toggleFollow } = useFollow(userId as string);
+  const { isFollowing, toggleFollow, isLoading } = useFollow(userId as string);
 
   const createdAt = useMemo(() => {
     if (!fetchedUser?.createdAt) {
@@ -35,6 +35,7 @@ export const UserBio = ({ userId }: { userId: string }) => {
             variant={isFollowing ? "destructive" : "default"}
             className="rounded-lg w-20"
             onClick={toggleFollow}
+            disabled={isLoading}
           >
             {isFollowing ? "Unfollow" : "Follow"}
           </Button>

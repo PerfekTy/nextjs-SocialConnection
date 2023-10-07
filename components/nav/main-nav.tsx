@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 
 import { BsBell } from "react-icons/bs";
 import { PiEnvelopeLight } from "react-icons/pi";
-import { FaTwitter } from "react-icons/fa";
+import { MdOutlineConnectWithoutContact } from "react-icons/md";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 import { Button } from "@/components/ui/button";
@@ -38,7 +38,7 @@ export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
     {
       label: "Home",
       href: "/",
-      icon: <FaTwitter size={30} />,
+      icon: <MdOutlineConnectWithoutContact size={30} />,
       active: pathname === "/",
     },
     {
@@ -70,8 +70,10 @@ export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
       ref={ref}
     >
       <div className="md:hidden flex items-center gap-4 fade-ani">
-        <FaTwitter size={40} color="#1da2f4" />
-        <h2 className="text-lg font-semibold tracking-wider">Twitter</h2>
+        <MdOutlineConnectWithoutContact size={40} color="#2dac5c" />
+        <h2 className="text-lg font-semibold tracking-wider">
+          SocialConnection
+        </h2>
       </div>
       {ROUTES.map((route) => (
         <NavItem
@@ -99,7 +101,7 @@ export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
               height={40}
               className={
                 pathname === `/users/${currentUser.id}`
-                  ? "rounded-full object-cover h-10 border-2 border-[#1da2f4]"
+                  ? "rounded-full object-cover h-10 border-2 border-[#2dac5c]"
                   : "rounded-full object-cover h-10 outline"
               }
             />
@@ -122,7 +124,7 @@ export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
           className="flex justify-center hover:scale-110 transition-transform duration-150 fade-ani"
           onClick={() => setMobileMenu(false)}
         >
-          <IoIosCloseCircleOutline size={30} color="#1da2f4" />
+          <IoIosCloseCircleOutline size={30} color="#2dac5c" />
         </Button>
       )}
     </nav>

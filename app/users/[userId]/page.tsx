@@ -17,7 +17,7 @@ const UserView = ({ params }: { params: any }) => {
   if (isLoading || !fetchedUser) {
     return (
       <div className="flex justify-center items-center h-full">
-        <ClipLoader color="#1da2f4" size={80} />
+        <ClipLoader color="#2dac5c" size={80} />
       </div>
     );
   }

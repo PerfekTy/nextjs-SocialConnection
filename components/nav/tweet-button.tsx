@@ -5,9 +5,9 @@ export const TweetButton = () => {
     <Button
       type="button"
       variant="ghost"
-      className="bg-[#1da2f4] text-md tracking-wider text-white w-full"
+      className="bg-[#2dac5c] text-md tracking-wider text-white w-full"
     >
-      Tweet
+      Post
     </Button>
   );
 };

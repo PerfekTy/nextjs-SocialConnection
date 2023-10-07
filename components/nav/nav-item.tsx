@@ -33,7 +33,7 @@ export const NavItem = ({
       onClick={handleClick}
       className={cn(
         "font-medium transition-colors hover:text-primary text-md flex items-center gap-3 md:gap-1 relative",
-        active ? "text-[#1da2f4] dark:text-[#1da2f4]" : "text-muted-foreground"
+        active ? "text-[#2dac5c] dark:text-[#2dac5c]" : "text-muted-foreground"
       )}
     >
       {icon}
@@ -42,7 +42,7 @@ export const NavItem = ({
         <BsDot
           className="absolute -top-8 left-[-0.65rem]"
           size={70}
-          color="#1da2f4"
+          color="#2dac5c"
         />
       ) : null}
     </Link>

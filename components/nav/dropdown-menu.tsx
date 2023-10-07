@@ -17,7 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { AiOutlineUser } from "react-icons/ai";
-import { FaTwitter } from "react-icons/fa";
+import { MdOutlineConnectWithoutContact } from "react-icons/md";
 
 export const NavDropdownMenu = ({
   currentUser,
@@ -38,7 +38,7 @@ export const NavDropdownMenu = ({
               height={40}
               className={
                 pathname === `/users/${currentUser.id}`
-                  ? "rounded-full object-cover h-10 border-2 border-[#1da2f4]"
+                  ? "rounded-full object-cover h-10 border-2 border-[#2dac5c]"
                   : "rounded-full object-cover h-10 outline"
               }
             />
@@ -51,7 +51,11 @@ export const NavDropdownMenu = ({
       </DropdownMenuTrigger>
       <DropdownMenuContent className="flex flex-col items-center justify-center p-0">
         <DropdownMenuLabel className="fade-ani mt-1">
-          {currentUser ? currentUser.user?.name : <FaTwitter size={25} />}
+          {currentUser ? (
+            currentUser.user?.name
+          ) : (
+            <MdOutlineConnectWithoutContact size={25} />
+          )}
         </DropdownMenuLabel>
         {currentUser && (
           <DropdownMenuItem>

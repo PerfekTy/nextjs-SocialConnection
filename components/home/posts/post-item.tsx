@@ -19,20 +19,15 @@ import { usePosts } from "@/hooks/usePosts";
 interface PostItemProps {
   userId?: string;
   data: Record<string, any>;
-  isLoading: boolean;
-  params?: any;
 }
 
-export const PostItem = ({
-  userId,
-  isLoading,
-  data = {},
-  params,
-}: PostItemProps) => {
+export const PostItem = ({ userId, data = {} }: PostItemProps) => {
   const router = useRouter();
   const { data: currentUser } = useCurrentUser();
-  const { isLiked, toggleLike } = useLike({ postId: data.id, userId });
-  const { mutate: mutatePosts } = usePosts();
+  const { isLiked, toggleLike, isLoading } = useLike({
+    postId: data.id,
+    userId,
+  });
 
   const goToUser = useCallback(
     (e: any) => {
@@ -58,22 +53,6 @@ export const PostItem = ({
       toggleLike();
     },
     [currentUser, toggleLike]
-  );
-
-  const onDelete = useCallback(
-    async (e: any) => {
-      e.stopPropagation();
-
-      if (!currentUser) {
-        return null;
-      }
-
-      await axios.delete(`api/posts/${data.id}`, { data: { id: data.id } });
-      toast.success("Post deleted");
-
-      mutatePosts();
-    },
-    [data.id, currentUser, mutatePosts]
   );
 
   const createdAt = useMemo(() => {
@@ -113,13 +92,14 @@ export const PostItem = ({
           </div>
           <div className="mt-1">{data.body}</div>
           <div className="flex flex-row items-center mt-3 gap-10 relative">
-            <div className="flex flex-row items-center gap-2 cursor-pointer transition hover:text-[#1da2f4] text-muted-foreground">
+            <div className="flex flex-row items-center gap-2 cursor-pointer transition hover:text-[#2dac5c] text-muted-foreground">
               <AiOutlineMessage size={20} />
               <p>{data.comments?.length || 0}</p>
             </div>
-            <div
+            <button
               className="flex flex-row items-center gap-2 cursor-pointer transition hover:text-red-500 text-muted-foreground"
               onClick={onLike}
+              disabled={isLoading}
             >
               {isLiked ? (
                 <AiFillHeart size={20} color="red" />
@@ -127,13 +107,7 @@ export const PostItem = ({
                 <AiOutlineHeart size={20} />
               )}
               <p>{data.likedIds?.length || 0}</p>
-            </div>
-            <div
-              className="flex flex-row items-center gap-2 cursor-pointer transition hover:text-yellow-300 text-muted-foreground ml-auto"
-              onClick={onDelete}
-            >
-              {currentUser?.id === data.user.id && <AiFillDelete size={20} />}
-            </div>
+            </button>
           </div>
         </div>
       </div>

@@ -128,7 +128,7 @@ export const EditModal = ({ userId }: { userId: string }) => {
           <DialogTitle>Update details</DialogTitle>
         </DialogHeader>
         <DialogDescription>
-          Edit your twitter account details.
+          Edit your SocialConnection account details.
         </DialogDescription>
         {bodyContent}
         <DialogFooter className="text-center text-sm text-muted-foreground">

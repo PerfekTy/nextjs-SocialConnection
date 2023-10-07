@@ -16,9 +16,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-import { FaTwitter } from "react-icons/fa";
+import { MdOutlineConnectWithoutContact } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
 export const AuthModal = () => {
+  const router = useRouter();
   const [loginCredentials, setLoginCredentials] = useState({
     email: "",
     password: "",
@@ -54,9 +56,16 @@ export const AuthModal = () => {
           return toast.error("Fields cannot be empty!");
         }
 
-        await signIn("credentials", {
+        const result = await signIn("credentials", {
           ...loginCredentials,
+          redirect: false,
         });
+
+        if (result?.error) {
+          toast.error("Invalid credentials, try again");
+        } else {
+          router.push("/");
+        }
       } catch (error) {
         console.log(error);
       } finally {
@@ -188,12 +197,13 @@ export const AuthModal = () => {
           {modalToggle ? (
             <>
               <DialogTitle className="my-5 flex gap-2 items-center justify-center">
-                Login to your twitter <FaTwitter size={30} color="#1da2f4" />
+                Login to your SocialConnection{" "}
+                <MdOutlineConnectWithoutContact size={30} color="#2dac5c" />
                 account
               </DialogTitle>
               {bodyContentLogin}
               <DialogDescription className="justify-center items-center flex gap-3">
-                First time using Twitter?
+                First time using SocialConnection?
                 <Button
                   onClick={() => setModalToggle(false)}
                   variant="ghost"
@@ -206,8 +216,8 @@ export const AuthModal = () => {
           ) : (
             <>
               <DialogTitle className="my-5 flex gap-2 items-center justify-center">
-                Create account to use twitter
-                <FaTwitter size={30} color="#1da2f4" />
+                Create account to use SocialConnection
+                <MdOutlineConnectWithoutContact size={30} color="#2dac5c" />
               </DialogTitle>
               {bodyContentRegister}
               <DialogDescription className="justify-center items-center flex gap-3">

@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
 import { useEffect } from "react";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { useNotifications } from "@/hooks/useNotifications";
-import { BsTwitter } from "react-icons/bs";
+import { MdOutlineConnectWithoutContact } from "react-icons/md";
 
 const NotificationsFeed = () => {
   const { data: currentUser, mutate: mutateCurrentUser } = useCurrentUser();
@@ -28,7 +28,7 @@ const NotificationsFeed = () => {
           className="flex flex-row items-center p-6 gap-4 border-b-[1px]"
           key={notification.id}
         >
-          <BsTwitter size={23} />
+          <MdOutlineConnectWithoutContact size={23} />
           <p>{notification.body}</p>
         </div>
       ))}
