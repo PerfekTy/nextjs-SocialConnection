@@ -7,15 +7,7 @@
 
 [build.environment]
   PRISMA_GENERATE = "true"
-
-[build.environment]
   PRISMA_MIGRATE = "true"
-
-[build.environment]
   MONOGO = "mongodb+srv://seba:sebas@cluster0.yatljvf.mongodb.net/twitter"
-
-[build.environment]
   NEXTAUTH_SECRET = "supersecret"
-
-[build.environment]
   NEXTAUTH_JWT_SECRET = "supersecret"
