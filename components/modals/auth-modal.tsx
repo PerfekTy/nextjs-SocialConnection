@@ -72,7 +72,7 @@ export const AuthModal = () => {
         setIsLoading(false);
       }
     },
-    [loginCredentials]
+    [loginCredentials, router]
   );
 
   const onSubmitRegister = useCallback(
