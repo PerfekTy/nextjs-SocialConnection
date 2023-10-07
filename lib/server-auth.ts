@@ -2,7 +2,7 @@ import prisma from "@/lib/prismadb";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./auth-options";
 
-const serverAuth = async (res: Response) => {
+const serverAuth = async () => {
   const session = await getServerSession(authOptions);
 
   if (!session?.user?.email) {
