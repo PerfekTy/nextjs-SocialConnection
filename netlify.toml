@@ -3,9 +3,6 @@
   functions = "lambda" 
 
 [build.environment]
-  NEXT_PRIVATE_TARGET = "your_next_private_target"
-
-[build.environment]
   PRISMA_GENERATE = "true"
   PRISMA_MIGRATE = "true"
   MONOGO = "mongodb+srv://seba:sebas@cluster0.yatljvf.mongodb.net/twitter"
