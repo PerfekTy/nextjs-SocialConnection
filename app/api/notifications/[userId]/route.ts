@@ -1,6 +1,6 @@
 import prisma from "@/lib/prismadb";
 
-export async function handler(req: Request, res: Response) {
+async function handler(req: Request, res: Response) {
   if (req.method !== "GET") {
     return new Response("Unsupported method", { status: 405 });
   }
@@ -9,7 +9,7 @@ export async function handler(req: Request, res: Response) {
     const url = req.url;
     const parts = url.split("/");
     const index = parts.indexOf("notifications") + 1;
-    const userId = parts[index];    
+    const userId = parts[index];
 
     const notifications = await prisma.notification.findMany({
       where: { userId },

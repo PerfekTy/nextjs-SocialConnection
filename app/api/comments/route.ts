@@ -1,7 +1,7 @@
 import prisma from "@/lib/prismadb";
 import serverAuth from "@/lib/server-auth";
 
-export async function handler(req: Request, res: Response) {
+async function handler(req: Request, res: Response) {
   if (req.method !== "POST") {
     return new Response("Unsupported method", { status: 405 });
   }

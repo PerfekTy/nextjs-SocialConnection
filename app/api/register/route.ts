@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import prisma from "@/lib/prismadb";
 
-export async function handler(req: Request) {
+async function handler(req: Request) {
   if (req.method !== "POST") {
     return new Response("Unsupported method", { status: 405 });
   }
