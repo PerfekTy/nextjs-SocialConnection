@@ -6,7 +6,7 @@ const serverAuth = async () => {
   const session = await getServerSession(authOptions);
 
   if (!session?.user?.email) {
-    return new Response("Not signed in", { status: 400 });
+    throw new Error("Not signed in");
   }
 
   const currentUser = await prisma.user.findUnique({
@@ -16,7 +16,7 @@ const serverAuth = async () => {
   });
 
   if (!currentUser) {
-    return new Response("Not signed in", { status: 400 });
+    throw new Error("Not signed in");
   }
 
   return { currentUser };
