@@ -2,7 +2,7 @@
 
 Deployed on Vercel application called Social Connection is my version of popular socialmedia side - Twitter.
 
-Live => social-connection.vercel.app
+Live => [Social Connection](https://social-connection.vercel.app)
 
 ## Stack
 
