@@ -46,8 +46,13 @@ Live => [Social Connection](https://social-connection.vercel.app)
 ## Screenshots of Social Connection
 
 ![Profile view - Dark](/ss/5.png)
+---
 ![Home Page before authentication - Light](/ss/2.png)
+---
 ![Home Page after authentication - Dark](/ss/1.png)
+---
 ![Login modal - Light](/ss/3.png)
+---
 ![Register modal successfull - Dark](/ss/4.png)
+---
 ![Post side - Light](/ss/6.png)
