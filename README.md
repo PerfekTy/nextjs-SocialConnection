@@ -23,7 +23,6 @@ Live => [Social Connection](https://social-connection.vercel.app)
 - `User can:`
 
     1. Authenticate.
-
     2. Edit profile.
     3. Write posts.
     4. Write comments to posts.
