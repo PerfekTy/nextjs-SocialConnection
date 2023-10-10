@@ -22,12 +22,13 @@ Live => [Social Connection](https://social-connection.vercel.app)
 
 - `User can:`
 
-    1. Authenticate.
-    2. Edit profile.
-    3. Write posts.
-    4. Write comments to posts.
-    5. Like posts.
-    6. Follow other users.
+    - Authenticate.
+      
+    - Edit profile.
+    - Write posts.
+    - Write comments to posts.
+    - Like posts.
+    - Follow other users.
 
 - `Dark & Light mode`
 
