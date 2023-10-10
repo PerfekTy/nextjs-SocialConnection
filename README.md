@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Social Connection
 
-## Getting Started
+Deployed on Vercel application called Social Connection is my version of popular socialmedia side - Twitter.
 
-First, run the development server:
+Live => [Social Connection](social-connection.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[Next.js](https://nextjs.org/),
+[MongoDB](https://www.mongodb.com),
+[Prisma](https://www.prisma.io),
+[React](https://react.dev),
+[Tailwind](https://tailwindcss.com)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Component library
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+[Shadcn ui](https://ui.shadcn.com)
 
-## Learn More
+## Feautres
 
-To learn more about Next.js, take a look at the following resources:
+- ```It's fully responsive```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `User can:`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    1. Authenticate.
 
-## Deploy on Vercel
+    2. Edit profile.
+    3. Write posts.
+    4. Write comments to posts.
+    5. Like posts.
+    6. Follow other users.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `Dark & Light mode`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Working on
+
+- `Follow bar on mobile view.`
+- `Search input for searching users.`
+- `Deleting user, post & comments.`
+- `Liking comments.`
+
+### Issues I know
+
+- `Follow bar sometimes doesn't display users.`
+
+## Screenshots of Social Connection
+
+![Profile view - Dark](/ss/5.png)
+![Home Page before authentication - Light](/ss/2.png)
+![Home Page after authentication - Dark](/ss/1.png)
+![Login modal - Light](/ss/3.png)
+![Register modal successfull - Dark](/ss/4.png)
+![Post side - Light](/ss/6.png)
