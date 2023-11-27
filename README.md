@@ -30,11 +30,11 @@ Live => [Social Connection](https://social-connection.vercel.app)
     - Like posts.
     - Follow other users.
 
-- `Dark & Light mode`
+- `Dark & Light mode.`
+- `Follow bar on mobile view.`
 
 ## Working on
 
-- `Follow bar on mobile view.`
 - `Search input for searching users.`
 - `Deleting user, post & comments.`
 - `Liking comments.`
