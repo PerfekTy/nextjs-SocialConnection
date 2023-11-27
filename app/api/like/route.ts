@@ -28,13 +28,17 @@ async function handler(req: Request) {
       try {
         const post = await prisma.post.findUnique({ where: { id: postId } });
 
-        if (currentUser.id === post?.userId) {
+        if (!post) {
+          return;
+        }
+
+        if (currentUser.id === post.userId) {
           return new Response("An error occurred", { status: 400 });
         } else {
           await prisma.notification.create({
             data: {
               body: "Someone liked your tweet!",
-              userId: post?.userId,
+              userId: post.userId,
             },
           });
           await prisma.user.update({
