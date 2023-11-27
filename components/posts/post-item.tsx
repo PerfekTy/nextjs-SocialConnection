@@ -5,7 +5,7 @@ import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { useRouter } from "next/navigation";
 import { Avatar } from "@/components/avatar/avatar";
 
-import { AiOutlineHeart, AiOutlineMessage, AiFillHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart, AiOutlineMessage } from "react-icons/ai";
 
 import { useLike } from "@/hooks/useLike";
 
@@ -28,7 +28,7 @@ export const PostItem = ({ userId, data = {} }: PostItemProps) => {
 
       router.push(`/users/${data.user?.id}`);
     },
-    [data.user?.id, router]
+    [data.user?.id, router],
   );
 
   const goToPost = useCallback(() => {
@@ -45,7 +45,7 @@ export const PostItem = ({ userId, data = {} }: PostItemProps) => {
 
       toggleLike();
     },
-    [currentUser, toggleLike]
+    [currentUser, toggleLike],
   );
 
   const createdAt = useMemo(() => {
@@ -63,7 +63,7 @@ export const PostItem = ({ userId, data = {} }: PostItemProps) => {
   return (
     <div
       onClick={goToPost}
-      className="border-b-[1px] p-5 cursor-pointer transition dark:hover:bg-[#05153d] hover:bg-[#f3f3f3]"
+      className="border-b-[1px] p-5 cursor-pointer transition dark:hover:bg-[#081d0f] hover:bg-[#f3f3f3]"
     >
       <div className="flex flex-row items-center gap-3">
         <Avatar userId={data.user.id} />

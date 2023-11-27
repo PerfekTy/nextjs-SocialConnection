@@ -11,13 +11,12 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
 import { AiOutlineUser } from "react-icons/ai";
-import { MdOutlineConnectWithoutContact } from "react-icons/md";
+import { Separator } from "@/components/ui/separator";
 
 export const NavDropdownMenu = ({
   currentUser,
@@ -28,51 +27,51 @@ export const NavDropdownMenu = ({
 }) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger>
         {currentUser ? (
-          <Button variant="ghost" className="p-0 rounded-full">
-            <Image
-              src={currentUser?.profileImage || "/images/placeholder.png"}
-              alt="Profile image"
-              width={40}
-              height={40}
-              className={
-                pathname === `/users/${currentUser.id}`
-                  ? "rounded-full object-cover h-10 border-2 border-[#2dac5c]"
-                  : "rounded-full object-cover h-10 outline"
-              }
-            />
-          </Button>
+          <Image
+            src={currentUser?.profileImage || "/images/placeholder.png"}
+            alt="Profile image"
+            width={40}
+            height={40}
+            className={
+              pathname === `/users/${currentUser.id}`
+                ? "rounded-full object-cover h-10 border-2 border-[#2dac5c] cursor-pointer select-none"
+                : "rounded-full object-cover h-10 outline cursor-pointer select-none"
+            }
+          />
         ) : (
           <Button variant="ghost">
             <AiOutlineUser size={30} />
           </Button>
         )}
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="flex flex-col items-center justify-center p-0">
-        <DropdownMenuLabel className="fade-ani mt-1">
-          {currentUser ? (
-            currentUser.user?.name
-          ) : (
-            <MdOutlineConnectWithoutContact size={25} />
+      <DropdownMenuContent className="flex flex-col items-center justify-center fade-ani w-full">
+        <DropdownMenuLabel className="text-[16px] tracking-wide px-0">
+          {currentUser && (
+            <>
+              {currentUser?.username}
+              <div className="my-3"></div>
+              <Separator className="absolute left-0" />
+            </>
           )}
         </DropdownMenuLabel>
         {currentUser && (
           <DropdownMenuItem>
-            <Link href={`/users/${currentUser?.id}`}>My Profile</Link>
+            <Link className="px-2 py-1" href={`/users/${currentUser?.id}`}>
+              My Profile
+            </Link>
           </DropdownMenuItem>
         )}
-        <DropdownMenuSeparator />
+
         {currentUser ? (
-          <Button
-            onClick={() => signOut()}
-            variant="destructive"
-            className="mb-3"
-          >
-            {"Logout"}
-          </Button>
+          <DropdownMenuItem className="mb-1">
+            <Button onClick={() => signOut()} variant="ghost" size="custom">
+              Logout
+            </Button>
+          </DropdownMenuItem>
         ) : (
-          <div className="mb-5">
+          <div className="mb-3">
             <AuthModal />
           </div>
         )}

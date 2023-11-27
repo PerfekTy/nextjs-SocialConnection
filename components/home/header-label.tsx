@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
+
 import { BiArrowBack } from "react-icons/bi";
 
 interface HeaderProps {
@@ -9,7 +10,10 @@ interface HeaderProps {
   showBackArrow?: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({ label, showBackArrow }) => {
+export const HeaderLabel: React.FC<HeaderProps> = ({
+  label,
+  showBackArrow,
+}) => {
   const router = useRouter();
 
   const handleBack = useCallback(() => {

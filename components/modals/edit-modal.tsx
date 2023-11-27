@@ -21,8 +21,10 @@ import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { useUser } from "@/hooks/useUser";
 import { ImageUpload } from "../user-view/image-upload";
 import { AiOutlineUpload } from "react-icons/ai";
+import { useRouter } from "next/navigation";
 
 export const EditModal = ({ userId }: { userId: string }) => {
+  const router = useRouter();
   const { data: currentUser } = useCurrentUser();
   const { mutate: mutateFetchedUser } = useUser(userId);
 
@@ -56,7 +58,7 @@ export const EditModal = ({ userId }: { userId: string }) => {
         coverImage,
       });
 
-      mutateFetchedUser();
+      await mutateFetchedUser();
 
       toast.success("User updated successfully");
     } catch (error) {

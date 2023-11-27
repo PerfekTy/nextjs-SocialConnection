@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useRef } from "react";
-import { signOut } from "next-auth/react";
 import Image from "next/image";
 
 import { usePathname, useRouter } from "next/navigation";
@@ -13,25 +12,28 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 
 import { Button } from "@/components/ui/button";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import { TweetButton } from "./tweet-button";
+import { PostButton } from "./post-button";
 
 import { NavItem } from "./nav-item";
 
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { NavDropdownMenu } from "./dropdown-menu";
 import { AuthModal } from "../modals/auth-modal";
+import { signOut } from "next-auth/react";
 
 interface mainNavProps {
   mobileMenu: boolean;
   setMobileMenu: (boolean: boolean) => void;
 }
 
-export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
+export default function NavMain({ mobileMenu, setMobileMenu }: mainNavProps) {
   const router = useRouter();
   const { data: currentUser } = useCurrentUser();
 
   const pathname = usePathname();
   const ref = useRef<HTMLMenuElement>(null);
+
+  console.log(currentUser?.hasNotification);
 
   useClickOutside(ref, mobileMenu, setMobileMenu);
 
@@ -42,7 +44,7 @@ export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
 
     setMobileMenu(false);
     router.push(`/users/${currentUser.id}`);
-  }, [router, currentUser]);
+  }, [router, currentUser, setMobileMenu]);
 
   const ROUTES = [
     {
@@ -65,8 +67,9 @@ export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
       alert: currentUser?.hasNotification,
     },
     {
+      label: "",
       href: "/",
-      icon: <TweetButton />,
+      icon: <PostButton />,
     },
   ];
 
@@ -74,7 +77,7 @@ export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
     <nav
       className={
         mobileMenu
-          ? "flex md:flex md:flex-row md:static md:items-center md:p-0 md:gap-6 lg:gap-10 flex-col gap-14 bg-[#f3f3f3] absolute left-0 top-0 dark:bg-[#11182c] h-full p-10 z-50"
+          ? "flex md:flex md:flex-row md:static md:items-center md:p-0 md:gap-6 lg:gap-10 flex-col gap-14 bg-[#f3f3f3] absolute left-0 top-0 dark:bg-[#081d0f] h-full p-10 z-50"
           : "hidden md:flex md:flex-row md:static md:items-center md:p-0 md:gap-6 lg:gap-10 flex-col gap-14 absolute left-0 top-0 h-full p-10 z-50"
       }
       ref={ref}
@@ -82,18 +85,18 @@ export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
       <div className="md:hidden flex items-center gap-4 fade-ani">
         <MdOutlineConnectWithoutContact size={40} color="#2dac5c" />
         <h2 className="text-lg font-semibold tracking-wider">
-          SocialConnection
+          Social Connection
         </h2>
       </div>
       {ROUTES.map((route) => (
         <NavItem
-          key={route.href}
+          key={route.label}
           href={route.href}
-          onClick={() => setMobileMenu(false)}
           label={route.label}
           active={route.active}
           icon={route.icon}
           alert={route.alert}
+          onClick={() => setMobileMenu(false)}
         />
       ))}
 
@@ -103,23 +106,18 @@ export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
 
       {currentUser && (
         <div className="md:hidden flex flex-col gap-6 justify-center items-center">
-          <Button
-            variant="ghost"
-            className="p-0 rounded-full"
+          <Image
+            src={currentUser?.profileImage || "/images/placeholder.png"}
+            alt="Profile image"
+            width={40}
+            height={40}
+            className={
+              pathname === `/users/${currentUser.id}`
+                ? "rounded-full object-cover h-10 border-2 border-[#2dac5c] cursor-pointer"
+                : "rounded-full object-cover h-10 outline cursor-pointer"
+            }
             onClick={() => goToUser()}
-          >
-            <Image
-              src={currentUser?.profileImage || "/images/placeholder.png"}
-              alt="Profile image"
-              width={40}
-              height={40}
-              className={
-                pathname === `/users/${currentUser.id}`
-                  ? "rounded-full object-cover h-10 border-2 border-[#2dac5c]"
-                  : "rounded-full object-cover h-10 outline"
-              }
-            />
-          </Button>
+          />
           <Button onClick={() => signOut()} variant="destructive">
             Logout
           </Button>
@@ -133,13 +131,15 @@ export default function MainNav({ mobileMenu, setMobileMenu }: mainNavProps) {
       )}
 
       {mobileMenu && (
-        <Button
-          variant={"ghost"}
-          className="flex justify-center hover:scale-110 transition-transform duration-150 fade-ani"
-          onClick={() => setMobileMenu(false)}
-        >
-          <IoIosCloseCircleOutline size={30} color="#2dac5c" />
-        </Button>
+        <>
+          <Button
+            variant="link"
+            className="flex justify-center hover:scale-110 transition-transform duration-150 fade-ani"
+            onClick={() => setMobileMenu(false)}
+          >
+            <IoIosCloseCircleOutline size={30} color="#2dac5c" />
+          </Button>
+        </>
       )}
     </nav>
   );

@@ -2,7 +2,7 @@ import { Layout } from "@/components/layout";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "react-hot-toast";
 import NextAuthSessionProvider from "./providers/session-provider";
 

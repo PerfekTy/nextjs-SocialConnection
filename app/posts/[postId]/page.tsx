@@ -2,10 +2,10 @@
 
 import { ClipLoader } from "react-spinners";
 
-import { Form } from "@/components/home/form";
-import { Header } from "@/components/home/header";
-import { PostItem } from "@/components/home/posts/post-item";
-import { CommentFeed } from "@/components/home/comments/comment-feed";
+import { Form } from "@/components/posts/form";
+import { HeaderLabel } from "@/components/home/header-label";
+import { PostItem } from "@/components/posts/post-item";
+import { CommentFeed } from "@/components/comments/comment-feed";
 
 import { usePost } from "@/hooks/usePost";
 
@@ -22,7 +22,7 @@ const PostView = ({ params }: { params: any }) => {
   }
   return (
     <>
-      <Header label="Tweet" showBackArrow />
+      <HeaderLabel label="Tweet" showBackArrow />
       <PostItem data={fetchedPost} />
       <Form
         postId={params.postId as string}

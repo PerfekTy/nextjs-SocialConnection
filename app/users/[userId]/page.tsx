@@ -2,12 +2,12 @@
 
 import { ClipLoader } from "react-spinners";
 
-import { Header } from "@/components/home/header";
+import { HeaderLabel } from "@/components/home/header-label";
 
 import { useUser } from "@/hooks/useUser";
 import { UserHero } from "@/components/user-view/user-hero";
 import { UserBio } from "@/components/user-view/user-bio";
-import { PostFeed } from "@/components/home/posts/post-feed";
+import { PostFeed } from "@/components/posts/post-feed";
 
 const UserView = ({ params }: { params: any }) => {
   const { userId } = params;
@@ -24,7 +24,7 @@ const UserView = ({ params }: { params: any }) => {
 
   return (
     <>
-      <Header label={fetchedUser?.name} showBackArrow />
+      <HeaderLabel label={fetchedUser?.name} showBackArrow />
       <UserHero userId={userId as string} />
       <UserBio userId={userId as string} />
       <PostFeed userId={userId as string} />

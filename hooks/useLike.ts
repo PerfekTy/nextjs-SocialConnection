@@ -16,10 +16,10 @@ export const useLike = ({
 }) => {
   const { data: currentUser } = useCurrentUser();
   const { data: fetchedPost, mutate: mutateFetchedUser } = usePost(
-    postId as string
+    postId as string,
   );
   const { mutate: mutateFetchedPosts } = usePosts(userId as string);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   const isLiked = useMemo(() => {
     const list = fetchedPost?.likedIds || [];
@@ -29,7 +29,7 @@ export const useLike = ({
 
   const toggleLike = useCallback(async () => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       let request;
 
       if (isLiked) {
@@ -40,14 +40,15 @@ export const useLike = ({
 
       await request();
 
-      mutateFetchedPosts();
-      mutateFetchedUser();
+      await mutateFetchedPosts();
+      await mutateFetchedUser();
 
       toast.success("Post liked / unliked");
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("You can't like your own post!");
+      console.log(error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   }, [isLiked, postId, mutateFetchedUser, mutateFetchedPosts]);
 

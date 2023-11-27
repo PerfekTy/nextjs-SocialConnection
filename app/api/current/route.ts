@@ -1,6 +1,6 @@
 import serverAuth from "@/lib/server-auth";
 
-async function handler(req: Request, res: Response) {
+async function handler(req: Request) {
   if (req.method !== "GET") {
     return new Response("Unsupported method", { status: 405 });
   }

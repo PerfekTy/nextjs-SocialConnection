@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 
-export const TweetButton = () => {
+export const PostButton = () => {
   return (
     <Button
       type="button"

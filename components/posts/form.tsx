@@ -3,16 +3,15 @@
 import { useCallback, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { cn } from "@/lib/utils";
 
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { usePosts } from "@/hooks/usePosts";
-
-import TwitterHeader from "@/components/home/welcome-twitter-header";
-import { Button } from "@/components/ui/button";
-import { AuthModal } from "@/components/modals/auth-modal";
-import { Avatar } from "@/components/avatar/avatar";
-import { cn } from "@/lib/utils";
 import { usePost } from "@/hooks/usePost";
+
+import HeaderHome from "@/components/home/header-home";
+import { Button } from "@/components/ui/button";
+import { Avatar } from "@/components/avatar/avatar";
 
 interface FormProps {
   placeholder: string;
@@ -34,7 +33,7 @@ export const Form = ({
   const [body, setBody] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const onSumbit = useCallback(
+  const onSubmit = useCallback(
     async (e: any) => {
       e.preventDefault();
       try {
@@ -55,22 +54,22 @@ export const Form = ({
         }
 
         setBody("");
-        mutatePosts();
-        mutatePost();
+        await mutatePosts();
+        await mutatePost();
       } catch (error) {
         toast.error("Something went wrong!");
       } finally {
         setIsLoading(false);
       }
     },
-    [body, mutatePosts, isComment, postId, mutatePost]
+    [body, isComment, postId, mutatePost],
   );
 
   return (
     <>
       {currentUser ? (
         <form
-          onSubmit={onSumbit}
+          onSubmit={onSubmit}
           className={(cn("border-b-[1px] px-5"), className)}
         >
           <div className="flex flex-row gap-4">
@@ -95,14 +94,9 @@ export const Form = ({
           </div>
         </form>
       ) : (
-        <>
-          <div className="py-8">
-            <TwitterHeader />
-          </div>
-          <div className="flex flex-row items-center justify-center gap-4 mb-5">
-            <AuthModal />
-          </div>
-        </>
+        <div className="py-8">
+          <HeaderHome />
+        </div>
       )}
     </>
   );

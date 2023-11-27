@@ -13,6 +13,14 @@ const NotificationsFeed = () => {
     mutateCurrentUser();
   }, [mutateCurrentUser]);
 
+  if (!currentUser?.id) {
+    return (
+      <div className="text-center p-6 text-xl text-muted-foreground">
+        You have to sign up to see notifications.
+      </div>
+    );
+  }
+
   if (fetchedNotifications.length === 0) {
     return (
       <div className="text-center p-6 text-xl text-muted-foreground">
