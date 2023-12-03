@@ -1,8 +1,6 @@
-# Social Connection - social media app
+# Social Connection - socialmedia app
 
-Deployed on Vercel application called Social Connection is my version of popular socialmedia side - Twitter.
-
-Live => [Social Connection]((https://nextjs-social-connection.vercel.app))
+Deployed on Vercel application called Social Connection is my version of popular socialmedia site - Twitter.
 
 ## Stack
 
