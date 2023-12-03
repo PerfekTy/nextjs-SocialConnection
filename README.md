@@ -1,4 +1,4 @@
-# Next.js Social Connection
+#Social Connection - social media app
 
 Deployed on Vercel application called Social Connection is my version of popular socialmedia side - Twitter.
 
