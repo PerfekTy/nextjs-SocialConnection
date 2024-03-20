@@ -37,10 +37,6 @@ Deployed on Vercel application called Social Connection is my version of popular
 - `Deleting user, post & comments.`
 - `Liking comments.`
 
-### Issues I know
-
-- `Follow bar sometimes doesn't display users.`
-
 ## Screenshots of Social Connection
 
 ![Profile view - Dark](/ss/5.png)
